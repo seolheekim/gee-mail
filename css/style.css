@@ -1,0 +1,76 @@
+#background {
+  background-image: url(../assets/background-image.jpg);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+  background-size: cover;
+  height: 100%;
+  width: 100%;
+}
+
+body {
+  font-family: 'Muli';
+}
+
+h1 {
+  position: absolute;
+  top: 47%;
+  left: 10%;
+  font-size: 100px;
+  font-family: 'Bungee Shade', cursive;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #e8a284;
+}
+
+
+li {
+  float: left;
+}
+
+li a {
+  display: block;
+  text-align: center;
+  padding: 20px 20px;
+  text-decoration: none;
+  font-size: 17px;
+
+}
+
+li a:hover {
+  background-color: #e26c41;
+}
+
+
+#main {
+  display: inline;
+  width: 100%;
+}
+.message {
+  display: none;
+  margin-top: 8px;
+  padding-top: 5px;
+  margin-bottom: 5px;
+  padding-bottom: 3px;
+}
+.newMail {
+  background: #efdaae;
+  float: right;
+  width: 100%;
+  margin-bottom: 5px;
+  padding-bottom: 9px;
+}
+.subject {
+  display: inherit;
+  margin-left: 15px;
+  margin-top: 10px;
+  padding: 2px;
+}
+.date {
+  display: inherit;
+  float: right;

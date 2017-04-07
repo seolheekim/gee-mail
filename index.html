@@ -1,18 +1,139 @@
 <html>
-	<head>
-		<script src="js/mail-generator.js"></script>
-		<link href="css/style.css" rel="stylesheet" media="screen">
-    <script>
+  <head>
+    <script src="js/mail-generator.js"></script>
+    <link href="css/style.css" rel="stylesheet" media="screen">
+    <link href="https://fonts.googleapis.com/css?family=Bungee+Shade|Muli" rel="stylesheet">
+     <script>
       window.onload = function(){
-        // ALL OF YOUR JAVASCRIPT CODE SHOULD GO HERE. 
-        // We have to use window.onload so your JavaScript doesn't execute until the page has loaded and all HTML has been downloaded to your browser
+
+        var emailArray = [geemails];
+
+        function displayMail(list){
+          for(var i = 0; i<list.length; i++){
+            var subjectBox = list[i].subject;
+            var senderBox = list[i].sender;
+            var dateBox = list[i].date;
+            var bodyBox = list[i].body;
+
+            console.log(displayMail);
+            
+            var newDiv = document.createElement("div");
+              newDiv.className = "newMail";
+              document.getElementById("main").appendChild(newDiv);
+
+            var showSubject = document.createElement("div");
+              showSubject.className = "subject";
+              var pathToSubject = document.getElementsByClassName("newMail")[i];
+              showSubject.innerHTML = subjectBox;
+              newDiv.appendChild(showSubject);
+
+            var showSender = document.createElement("div");
+              showSender.className = "sender";
+              var pathToSender = document.getElementsByClassName("newMail")[i];
+              showSender.innerHTML = "<strong> From: </strong> "+ senderBox;
+              showSubject.appendChild(showSender);
+
+            var showDate = document.createElement("div");
+              showDate.className = "date";
+              var pathToDate = document.getElementsByClassName("newMail")[i];
+              showDate.innerHTML = dateBox;
+              showSender.appendChild(showDate);
+
+            var showBody = document.createElement("p");
+              showBody.className = "message";
+              var pathToBody = document.getElementsByClassName("newMail")[i];
+              showBody.innerHTML = bodyBox;
+              showDate.appendChild(showBody);
+            }
+          }
+          //this will show current inbox count 
+            var inboxCount = document.getElementById("inboxCount");
+            var messageCount = geemails.length;
+            document.getElementById("inboxCount");
+            inboxCount.innerHTML = "Inbox " + " " + messageCount;
+          var messageElem = document.getElementsByClassName("newMail");
+          for(var i=0; i<messageElem.length; i++){
+            messageElem[i].addEventListener("click", showMessage);
+          }
+          //this will toggle to show the message when it is clicked and hide the message when it is clicked again.
+          function showMessage() {
+            var messageBox = this.querySelectorAll(".message")[0];
+              if(messageBox.style.display === "none"){
+                messageBox.style.display = "block";
+              }else {
+                messageBox.style.display = "none";
+              }
+          }
+        displayMail(geemails);
+
+        //creating a setInterval function that will call out the existing getNewMessage funtions.
+        function newMailBox(array) {
+          var generateNewMailBox = getNewMessage();
+
+            var newDiv = document.createElement("div");
+              newDiv.className = "newMail";
+              document.getElementById("main").appendChild(newDiv);
+
+            var newSubject = document.createElement("div");
+              newSubject.className = "subject";
+              newSubject.innerHTML = generateNewMailBox.subject;
+              newDiv.appendChild(newSubject);
+
+            var newSender = document.createElement("div");
+              newSender.className = "sender";
+              newSender.innerHTML = generateNewMailBox.sender;
+              newSubject.appendChild(newSender);
+
+            var newDate = document.createElement("div");
+              newDate.className = "date";
+              newDate.innerHTML = generateNewMailBox.date;
+              newSender.appendChild(newDate);
+
+            var newBody = document.createElement("div");
+              newBody.className = "message";
+              newBody.innerHTML = generateNewMailBox.body;
+              newDate.appendChild(newBody);
+
+            var inboxCount = document.getElementById("inboxCount");
+              var messageCount = geemails.length;
+              document.getElementById("inboxCount");
+              inboxCount.innerHTML = "Inbox " + " " + messageCount;
+              var messageElem = document.getElementsByClassName("newMail");
+              for(var i = 0; i<messageElem.length; i++){
+                messageElem[i].addEventListener("click", showMessage);
+              }
+
+              function showMessage() {
+                var messageBox = this.querySelectorAll(".message")[0];
+                  if(messageBox.style.display === "none"){
+                    messageBox.style.display = "block";
+                  }else {
+                    messageBox.style.display = "none";
+                  }
+              }
+
+          }setInterval (newMailBox, 4000);
+              
+        }
         
-      };
-    </script>
-	</head>
-	<body>
-		<div class="container" id="main">
-			Build Me!
-		</div>
-	</body>
+    </script> 
+  </head>
+  <body>
+
+    <div id="background">
+      <h1>GeeMail</h1>
+    </div>
+    
+      <div id="sidebar">
+        <ul>
+          <li><a href="#"><div id ="inboxCount"></div></a></li>
+          <li><a href="#">Drafts</a></li>
+          <li><a href="#">Sent</a></li>
+          <li><a href="#">Trash</a></li>
+        </ul>
+      </div>
+        <div id="container">
+          <div id="main"></div>
+        </div>
+  </body>
 </html>
